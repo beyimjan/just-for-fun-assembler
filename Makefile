@@ -6,7 +6,7 @@ ASFLAGS = -g -d OS_LINUX -f elf -i include
 LD = ld
 LDFLAGS = -m elf_i386
 
-BINS = kill
+BINS = kill cat
 
 all: $(BINS)
 
@@ -18,6 +18,8 @@ clean:
 	$(AS) $(ASFLAGS) $<
 
 kill: kill.o modules/strlen.o modules/strtoi.o
+
+cat: cat.o modules/putstr.o modules/transfer.o modules/strlen.o
 
 $(BINS):
 	$(LD) $(LDFLAGS) $^ -o $@
