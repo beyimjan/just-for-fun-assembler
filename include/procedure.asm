@@ -6,11 +6,11 @@
 %macro pcall 1-*
   %rep %0-1
     %rotate -1
-	push dword %1
+		push dword %1
   %endrep
   %rotate -1
-	call %1
+		call %1
   %if %0 >= 2
-	add esp, (%0-1)*4
+		add esp, (%0-1)*4
   %endif
 %endmacro
