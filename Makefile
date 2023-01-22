@@ -1,7 +1,8 @@
 # Copyright (C) 2022, 2023 Tamerlan Bimzhanov
 
 AS = nasm
-ASFLAGS = -g -d OS_LINUX -f elf -i include
+ASFLAGS = -g -d OS_LINUX -f elf
+CPPFLAGS = -i include
 
 LD = ld
 LDFLAGS = -m elf_i386
@@ -15,7 +16,7 @@ clean:
 	rm -f $(BINS)
 
 %.o: %.asm
-	$(AS) $(ASFLAGS) $<
+	$(AS) $(CPPFLAGS) $(ASFLAGS) $<
 
 kill: kill.o modules/strlen.o modules/strtoi.o
 
