@@ -1,7 +1,16 @@
 # Copyright (C) 2022, 2023 Tamerlan Bimzhanov
 
+ifndef $(OS)
+OS = $(shell uname -s | tr 'a-z' 'A-Z')
+endif
+
+OS_SUPPORTED = LINUX FREEBSD
+ifeq (, $(filter $(OS), $(OS_SUPPORTED)))
+$(error Unknown OS, only Linux and FreeBSD are supported)
+endif
+
 AS = nasm
-ASFLAGS = -g -d OS_LINUX -f elf
+ASFLAGS = -g -d OS_$(OS) -f elf
 CPPFLAGS = -i include
 
 LD = ld
